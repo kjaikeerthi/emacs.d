@@ -10,7 +10,7 @@
 ;; disable autosave and backup files
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-
+(setq scss-compile-at-save nil)
 
 (progn
   ;; no toolbar
@@ -26,13 +26,25 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+(setq-default visible-bell nil)
+
 ;; Enable IDO mode.
 (ido-mode t)
+(set-default-font "dejavu sans mono")
 
 ;; Toggle Fullscreen mode
-(global-set-key "\C-f" 'ns-toggle-fullscreen)
+(global-set-key "\C-z" 'ns-toggle-fullscreen)
+
 
 ;; wombat theame
 (load-theme 'wombat)
+
+ (setq mac-option-key-is-meta nil
+	mac-command-key-is-meta t
+	mac-command-modifier 'meta
+	mac-option-modifier 'none)
+
+(setq shell-file-name "/bin/bash")
+
 
 (provide 'environment)

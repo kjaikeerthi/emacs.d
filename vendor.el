@@ -7,6 +7,8 @@
 (add-to-list 'load-path package-home)
 (require 'el-get)
 
+(setq ack-executable "/usr/local/bin/ack")
+
 (setq el-get-sources
       '((:name inf-ruby  :type elpa)
         (:name ruby-compilation :type elpa)
@@ -102,11 +104,6 @@
 
 (defun haml-mode-hook ()
   (autoload 'haml-mode "haml-mode" nil t)
-  (add-hook 'haml-mode-hook
-          (lambda ()
-            (local-set-key (kbd "q") '(lambda() 
-                                            (interactive)
-                                            (kill-buffer (current-buffer))))))
 )
 
 ;; (el-get)

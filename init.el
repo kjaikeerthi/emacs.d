@@ -9,4 +9,5 @@
 
 (require 'haml-jump)
 
-;; (require 'chat)
+(require 'chat)
+(put 'ido-exit-minibuffer 'disabled nil)
