@@ -1,0 +1,7 @@
+My Emacs profile for Emacs24.
+
+cd ~/
+git clone git@github.com:kjaikeerthi/emacs.d.git .emacs.d
+rake
+
+Just start your emacs needed packages will be downloaded.
