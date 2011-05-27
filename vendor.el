@@ -3,7 +3,7 @@
 (setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
 (package-initialize)
 
-(add-to-list 'load-path (concat emacs-home "/el-get/el-get"))
+(add-to-list 'load-path package-home)
 (require 'el-get)
 
 (setq el-get-sources
@@ -31,6 +31,11 @@
                :url "https://github.com/eschulte/rhtml.git"
                :features rhtml-mode
                :after (lambda () (rhtml-mode-hook)))
+        (:name markdown-mode
+               :type git
+               :url "https://github.com/defunkt/markdown-mode.git"
+               :features markdown-mode
+               :after (lambda () (markdown-mode-hook)))
         (:name haml-mode
                :type git
                :url "https://github.com/nex3/haml-mode.git"
@@ -78,6 +83,10 @@
   (autoload 'yaml-mode "yaml-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
   (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode)))
+
+(defun markdown-mode-hook ()
+  (autoload 'markdown-mode "markdown-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode)))
 
 (defun css-mode-hook ()
   (autoload 'css-mode "css-mode" nil t)
