@@ -19,7 +19,10 @@
         (:name textmate
                :type git
                :url "git://github.com/defunkt/textmate.el"
-               :load "textmate.el")
+               :load "textmate.el"
+               :after(lambda ()
+                       (global-set-key (kbd "C-x C-x") 'textmate-goto-file)
+                       ))
         (:name rvm
                :type git
                :url "http://github.com/djwhitt/rvm.el.git"
@@ -56,7 +59,9 @@
                             (ac-config-default)
                             ))
         (:name magit
-               :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
+               :after (lambda () 
+                        (global-set-key (kbd "C-x C-z") 'magit-status)
+                        ))
        ))
 (defun ruby-mode-hook ()
   (autoload 'ruby-mode "ruby-mode" nil t)
