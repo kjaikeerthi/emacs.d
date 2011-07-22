@@ -7,3 +7,5 @@ elpa
 el-get
 eshell
 session.*
+.#*
+url
