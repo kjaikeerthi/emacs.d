@@ -3,60 +3,62 @@
 (setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
 (package-initialize)
 
+
 (add-to-list 'load-path package-home)
 (require 'el-get)
+
 (setq el-get-sources
       '((:name inf-ruby  :type elpa)
-        ;; (:name ruby-compilation :type elpa)
-        ;; (:name css-mode 
-        ;;        :type elpa 
-        ;;        :after (lambda () (css-mode-hook)))
-        ;; (:name textmate
-        ;;        :type git
-        ;;        :url "git://github.com/defunkt/textmate.el"
-        ;;        :load "textmate.el"
-        ;;        :after(lambda ()
-        ;;                (global-set-key (kbd "C-x C-x") 'textmate-goto-file)
-        ;;                ))
-        ;; (:name rvm
-        ;;        :type git
-        ;;        :url "http://github.com/djwhitt/rvm.el.git"
-        ;;        :load "rvm.el"
-        ;;        :compile ("rvm.el")
-        ;;        :after (lambda() (rvm-use-default)))
-        ;; (:name rhtml
-        ;;        :type git
-        ;;        :url "https://github.com/eschulte/rhtml.git"
-        ;;        :features rhtml-mode
-        ;;        :after (lambda () (rhtml-mode-hook)))
-        ;; (:name markdown-mode
-        ;;        :type git
-        ;;        :url "https://github.com/defunkt/markdown-mode.git"
-        ;;        :features markdown-mode
-        ;;        :after (lambda () (markdown-mode-hook)))
-        ;; (:name haml-mode
-        ;;        :type git
-        ;;        :url "https://github.com/nex3/haml-mode.git"
-        ;;        :features haml-mode
-        ;;        :after (lambda () (haml-mode-hook)))
-        ;; (:name yaml-mode 
-        ;;        :type git
-        ;;        :url "http://github.com/yoshiki/yaml-mode.git"
-        ;;        :features yaml-mode
-        ;;        :after (lambda () (yaml-mode-hook)))
-        ;; (:name autocomplete
-        ;;        :type git
-        ;;        :url "https://github.com/m2ym/auto-complete.git"
-        ;;        :post-init (lambda () 
-        ;;                     (require 'auto-complete)
-        ;;                     (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
-        ;;                     (require 'auto-complete-config)
-        ;;                     (ac-config-default)
-        ;;                     ))
-        ;; (:name magit
-        ;;        :after (lambda () 
-        ;;                 (global-set-key (kbd "C-x C-z") 'magit-status)
-        ;;                 ))
+        (:name ruby-compilation :type elpa)
+        (:name css-mode 
+               :type elpa 
+               :after (lambda () (css-mode-hook)))
+        (:name textmate
+               :type git
+               :url "git://github.com/defunkt/textmate.el"
+               :load "textmate.el"
+               :after(lambda ()
+                       (global-set-key (kbd "C-x C-x") 'textmate-goto-file)
+                       ))
+        (:name rvm
+               :type git
+               :url "http://github.com/djwhitt/rvm.el.git"
+               :load "rvm.el"
+               :compile ("rvm.el")
+               :after (lambda() (rvm-use-default)))
+        (:name rhtml
+               :type git
+               :url "https://github.com/eschulte/rhtml.git"
+               :features rhtml-mode
+               :after (lambda () (rhtml-mode-hook)))
+        (:name markdown-mode
+               :type git
+               :url "https://github.com/defunkt/markdown-mode.git"
+               :features markdown-mode
+               :after (lambda () (markdown-mode-hook)))
+        (:name haml-mode
+               :type git
+               :url "https://github.com/nex3/haml-mode.git"
+               :features haml-mode
+               :after (lambda () (haml-mode-hook)))
+        (:name yaml-mode 
+               :type git
+               :url "http://github.com/yoshiki/yaml-mode.git"
+               :features yaml-mode
+               :after (lambda () (yaml-mode-hook)))
+        (:name autocomplete
+               :type git
+               :url "https://github.com/m2ym/auto-complete.git"
+               :post-init (lambda () 
+                            (require 'auto-complete)
+                            (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
+                            (require 'auto-complete-config)
+                            (ac-config-default)
+                            ))
+        (:name magit
+               :after (lambda () 
+                        (global-set-key (kbd "C-x C-z") 'magit-status)
+                        ))
         ;; (:name dictionary-el    :type apt-get)
         ;; (:name emacs-goodies-el :type apt-get)
        ))
@@ -93,9 +95,10 @@
 
 (defun css-mode-hook ()
   (autoload 'css-mode "css-mode" nil t)
-  (add-hook 'css-mode-hook '(lambda ()
-                              (setq css-indent-level 2)
-                              (setq css-indent-offset 2))))
+  ;; (add-hook 'css-mode-hook '(lambda ()
+  ;;                             (setq css-indent-level 2)
+                              ;; (setq css-indent-offset 2)))
+  )
 
 (defun haml-mode-hook ()
   (autoload 'haml-mode "haml-mode" nil t)
@@ -110,7 +113,7 @@
 
 (setq my-packages
       (append
-       '(cssh el-get switch-window vkill google-maps nxhtml xcscope yasnippet webjump webjump-plus)
+       '(cssh switch-window vkill google-maps xcscope)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)
