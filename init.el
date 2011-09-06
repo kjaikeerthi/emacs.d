@@ -9,4 +9,4 @@
 
 (require 'haml-jump)
 
-(require 'chat)
+;; (require 'chat)

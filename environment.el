@@ -30,8 +30,7 @@
 (ido-mode t)
 
 ;; Toggle Fullscreen mode
-(require 'toggle-fullscreen)
-(toggle-fullscreen)
+(global-set-key "\C-f" 'ns-toggle-fullscreen)
 
 ;; wombat theame
 (load-theme 'wombat)
