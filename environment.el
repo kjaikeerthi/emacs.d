@@ -39,10 +39,10 @@
 ;; wombat theame
 (load-theme 'wombat)
 
- (setq mac-option-key-is-meta nil
-	mac-command-key-is-meta t
-	mac-command-modifier 'meta
-	mac-option-modifier 'none)
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'none)
 
 (setq shell-file-name "/bin/bash")
 

@@ -7,7 +7,7 @@
 
 (require 'vendor)
 
-(require 'haml-jump)
+;; (require 'haml-jump)
 
 (require 'chat)
-(put 'ido-exit-minibuffer 'disabled nil)
+;; (put 'ido-exit-minibuffer 'disabled nil)

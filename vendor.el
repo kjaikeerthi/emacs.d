@@ -5,21 +5,50 @@
 
 
 (add-to-list 'load-path package-home)
-(require 'el-get)
+
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
+   (lambda (s)
+     (goto-char (point-max))
+     (eval-print-last-sexp))))
 
 (setq ack-executable "/usr/local/bin/ack")
 
 (setq el-get-sources
       '((:name inf-ruby  :type elpa)
         (:name ruby-compilation :type elpa)
-        (:name css-mode 
-               :type elpa 
-               :after (lambda () (css-mode-hook)))
+        (:name flymake-haml :type elpa)
+        (:name flymake-ruby :type elpa)
+        (:name flymake-shell :type elpa)
+        (:name flymake-jslint :type elpa)
+        (:name jabber :type elpa)
+        (:name rinari :type elpa)
+        (:name jade-mode :type elpa)
+        (:name scss-mode :type elpa)
+        (:name inf-ruby :ype elpa)
+        (:name ruby-electric :type elpa)
+        (:name ruby-block :type elpa)
+        (:name ruby-end :type elpa)
+        (:name rspec-mode :type elpa)
+        (:name scss-mode :type elpa)
+        (:name ssh :type elpa)
+        (:name w3 :type elpa)
+        (:name ace-jump-mode
+               :type elpa
+               :load "ace-jump-mode.el"
+               :after (progn ()
+                             (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+                             )
+               )
+        (:name css-mode
+               :type elpa
+               :after (progn () (css-mode-hook)))
         (:name textmate
                :type git
                :url "git://github.com/defunkt/textmate.el"
                :load "textmate.el"
-               :after(lambda ()
+               :after(progn ()
                        (global-set-key (kbd "C-x C-x") 'textmate-goto-file)
                        ))
         (:name rvm
@@ -27,38 +56,38 @@
                :url "http://github.com/djwhitt/rvm.el.git"
                :load "rvm.el"
                :compile ("rvm.el")
-               :after (lambda() (rvm-use-default)))
+               :after (progn() (rvm-use-default)))
         (:name rhtml
                :type git
                :url "https://github.com/eschulte/rhtml.git"
                :features rhtml-mode
-               :after (lambda () (rhtml-mode-hook)))
+               :after (progn () (rhtml-mode-hook)))
         (:name markdown-mode
                :type git
                :url "https://github.com/defunkt/markdown-mode.git"
                :features markdown-mode
-               :after (lambda () (markdown-mode-hook)))
+               :after (progn () (markdown-mode-hook)))
         (:name haml-mode
                :type git
                :url "https://github.com/nex3/haml-mode.git"
                :features haml-mode
-               :after (lambda () (haml-mode-hook)))
-        (:name yaml-mode 
+               :after (progn () (haml-mode-hook)))
+        (:name yaml-mode
                :type git
                :url "http://github.com/yoshiki/yaml-mode.git"
                :features yaml-mode
-               :after (lambda () (yaml-mode-hook)))
-        (:name autocomplete
-               :type git
-               :url "https://github.com/m2ym/auto-complete.git"
-               :post-init (lambda () 
+               :after (progn () (yaml-mode-hook)))
+        (:name popup :type elpa)
+        (:name auto-complete
+               :type elpa
+               :post-init (progn ()
                             (require 'auto-complete)
                             (add-to-list 'ac-dictionary-directories (expand-file-name "dict" pdir))
                             (require 'auto-complete-config)
                             (ac-config-default)
                             ))
         (:name magit
-               :after (lambda () 
+               :after (progn ()
                         (global-set-key (kbd "C-x C-z") 'magit-status)
                         ))
         ;; (:name dictionary-el    :type apt-get)
@@ -79,6 +108,7 @@
                                (require 'inf-ruby)
                                (require 'ruby-compilation))))
 (ruby-mode-hook)
+
 (defun rhtml-mode-hook ()
   (autoload 'rhtml-mode "rhtml-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
@@ -110,7 +140,7 @@
 
 (setq my-packages
       (append
-       '(cssh switch-window vkill google-maps xcscope)
+       '(cssh switch-window vkill google-maps xcscope color-theme cheat full-ack gist)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)
